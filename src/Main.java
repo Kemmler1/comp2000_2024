@@ -3,16 +3,19 @@ import java.awt.*;
 public class Main extends JFrame{
     public static void main(String[] args) throws Exception {
         Main window = new Main();
+
+        window.run();
     }
     class Canvas extends JPanel {
+
+        Stage stage = new Stage();
         public Canvas(){
             setPreferredSize(new Dimension(720,720));
         }
 
         @Override
         public void paint(Graphics g){
-            //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            Grid grid = new Grid(g);
+            stage.paint(g, getMousePosition());
         }
     }
 
@@ -24,4 +27,10 @@ public class Main extends JFrame{
         this.pack();
         this.setVisible(true);
     }
+
+   public void run(){
+        while(true){
+            this.repaint();
+        }
+   }
 }

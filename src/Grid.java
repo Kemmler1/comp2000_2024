@@ -2,14 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Grid{
-    public Grid(Graphics g, Point p){    
-         
-        Cell[][] cells = new Cell[20][20];
+    // fields
+    Cell[][] cells = new Cell[20][20];
 
-        for(int x = 0; x < cells.length; x++){
-            for(int y = 0; y < cells.length; y++){
-                cells[x][y] = new Cell(g, 10+(x*35), 10+(y*35), p);
-            }        
+    public Grid(){
+        for(int i = 0; i < cells.length; i++){
+            for(int k = 0 ; k <cells[i].length; k++){
+                cells[i][k] = new Cell(10+Cell.size*i, 10+Cell.size*k);
+            }
         }
     }
+    
+    //methods
+    public void paint(Graphics g, Point mousePos) {
+        for(int i = 0; i < cells.length; i++){
+            for(int k = 0; k < cells[i].length; k++){
+                cells[i][k].paint(g, mousePos);
+            }
+        }
+    }
+
+    
 }

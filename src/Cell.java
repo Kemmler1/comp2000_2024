@@ -1,24 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell extends JPanel {
-    public Cell(Graphics g, int x, int y, Point p){
-        
-        if(contains(p, x, y)){
-            g.setColor(Color .GREEN);
+public class Cell extends Rectangle {
+
+    static int size = 35;
+
+    public Cell(int inX, int inY){
+        super(inX, inY, size, size);
+    }
+
+    public void paint(Graphics g, Point mousePos){
+        if(contains(mousePos)){
+            g.setColor(Color .GRAY);
         } else {
             g.setColor(Color .WHITE);
         }
-            g.fillRect(x, y, 35, 35);
+            g.fillRect(x, y, size, size);
             g.setColor(Color .BLACK);
-            g.drawRect(x,y, 35, 35);
-        
+            g.drawRect(x,y, size, size);
         
     }
 
-    boolean contains(Point p, int x, int y){
+    public boolean contains(Point p){
         if(p != null){
-            return (x < p.x && x+35 > p.x && y < p.y && y+35 > p.y);
+            return super.contains(p);
         } else {return false;}
     }
 }
